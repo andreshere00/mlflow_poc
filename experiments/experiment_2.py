@@ -103,15 +103,24 @@ def log_to_mlflow(
     experiment_name: str = "experiment_2"
 ):
 
-    mlflow.set_tracking_uri(uri = "./runs")
+    mlflow.set_tracking_uri(uri = "./mlruns")
     exp_id = mlflow.create_experiment(name="mlops_exp_2", tags = {"version": "v1"})
 
     with mlflow.start_run(experiment_id=exp_id, run_name="run_1"):
-        mlflow.log_param("alpha", alpha)
-        mlflow.log_param("l1_ratio", l1_ratio)
-        mlflow.log_metric("rmse", rmse)
-        mlflow.log_metric("mae", mae)
-        mlflow.log_metric("r2", r2)
+        mlflow.log_params(
+            {
+                "alpha": alpha,
+                "l1_ratio": l1_ratio
+            }
+        )
+        mlflow.log_metrics(
+            {
+                "rmse": rmse,
+                "mae": mae,
+                "r2": r2
+            }
+        )
+        mlflow.log_artifact('data/red-wine-quality.csv')
         mlflow.sklearn.log_model(model, name="regression_model", input_example=X_sample)
         logger.info("Metrics and model logged to MLflow.")
 
