@@ -22,14 +22,17 @@ import mlflow
 
 # --- Logging setup ---
 logger = logging.getLogger(__name__)
+
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
+#    level=logging.INFO,
     format="%(asctime)s | %(name)s | %(levelname)s | %(message)s",
     handlers=[
         logging.FileHandler("/tmp/app.log", mode="w"),
         logging.StreamHandler(),
     ],
 )
+
 warnings.filterwarnings("ignore")
 
 # --- Constants ---
@@ -99,8 +102,11 @@ def log_to_mlflow(
     X_sample: pd.DataFrame,
     experiment_name: str = "experiment_2"
 ):
-    exp = mlflow.set_experiment(experiment_name=experiment_name)
-    with mlflow.start_run(experiment_id=exp.experiment_id):
+
+    mlflow.set_tracking_uri(uri = "./runs")
+    exp_id = mlflow.create_experiment(name="mlops_exp_2", tags = {"version": "v1"})
+
+    with mlflow.start_run(experiment_id=exp_id, run_name="run_1"):
         mlflow.log_param("alpha", alpha)
         mlflow.log_param("l1_ratio", l1_ratio)
         mlflow.log_metric("rmse", rmse)
@@ -108,6 +114,13 @@ def log_to_mlflow(
         mlflow.log_metric("r2", r2)
         mlflow.sklearn.log_model(model, name="regression_model", input_example=X_sample)
         logger.info("Metrics and model logged to MLflow.")
+
+        run = mlflow.active_run()
+
+        logger.debug(f"Active run is {run.info.run_id} with name {run.info.run_name}")
+
+    experiment = mlflow.get_experiment(exp_id)
+    logger.debug(f"Experiment: {experiment}")
 
 # --- Main pipeline ---
 def main():

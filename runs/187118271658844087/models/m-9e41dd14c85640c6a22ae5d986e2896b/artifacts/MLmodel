@@ -1,0 +1,41 @@
+artifact_path: /Users/aherencia/Documents/Projects/tmp/mlflow_poc/runs/187118271658844087/models/m-9e41dd14c85640c6a22ae5d986e2896b/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.9
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.1
+is_signature_from_type_hint: false
+mlflow_version: 3.1.4
+model_id: m-9e41dd14c85640c6a22ae5d986e2896b
+model_size_bytes: 1680
+model_uuid: m-9e41dd14c85640c6a22ae5d986e2896b
+prompts: null
+run_id: 2906e59cf2e248f6b3fc51f267f3e4a5
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "long", "name": "Unnamed: 0", "required": true}, {"type": "double",
+    "name": "fixed acidity", "required": true}, {"type": "double", "name": "volatile
+    acidity", "required": true}, {"type": "double", "name": "citric acid", "required":
+    true}, {"type": "double", "name": "residual sugar", "required": true}, {"type":
+    "double", "name": "chlorides", "required": true}, {"type": "double", "name": "free
+    sulfur dioxide", "required": true}, {"type": "double", "name": "total sulfur dioxide",
+    "required": true}, {"type": "double", "name": "density", "required": true}, {"type":
+    "double", "name": "pH", "required": true}, {"type": "double", "name": "sulphates",
+    "required": true}, {"type": "double", "name": "alcohol", "required": true}]'
+  outputs: '[{"type": "double", "required": true}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-07-23 15:40:52.457884'

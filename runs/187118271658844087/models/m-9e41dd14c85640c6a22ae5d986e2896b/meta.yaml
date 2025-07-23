@@ -1,0 +1,10 @@
+artifact_location: /Users/aherencia/Documents/Projects/tmp/mlflow_poc/runs/187118271658844087/models/m-9e41dd14c85640c6a22ae5d986e2896b/artifacts
+creation_timestamp: 1753285252452
+experiment_id: '187118271658844087'
+last_updated_timestamp: 1753285253498
+model_id: m-9e41dd14c85640c6a22ae5d986e2896b
+model_type: null
+name: regression_model
+source_run_id: 2906e59cf2e248f6b3fc51f267f3e4a5
+status: 2
+status_message: null
